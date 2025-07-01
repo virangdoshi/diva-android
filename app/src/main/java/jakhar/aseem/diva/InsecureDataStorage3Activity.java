@@ -42,6 +42,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.nio.file.Files;
 
 public class InsecureDataStorage3Activity extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class InsecureDataStorage3Activity extends AppCompatActivity {
         File ddir =  new File(getApplicationInfo().dataDir);
 
         try {
-            File uinfo = File.createTempFile("uinfo", "tmp", ddir);
+            File uinfo = Files.createTempFile(ddir.toPath(), "uinfo", "tmp").toFile();
             uinfo.setReadable(true);
             uinfo.setWritable(true);
             FileWriter fw = new FileWriter(uinfo);
